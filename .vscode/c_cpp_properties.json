@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/opt/ros/humble/include/**",
+                "/home/hkn/Desktop/rover_ws/src/rover_ws/serial-ros2/include/**",
+                "/home/hkn/Desktop/rover_ws/src/rover_ws/vel_cmd_serial/include/**",
+                "/usr/include/**",
+                "${workspaceFolder}/src/wave_rover_control/include"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}
