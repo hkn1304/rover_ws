@@ -19,6 +19,11 @@ ament_target_dependencies(joystick_driver_node rclcpp sensor_msgs std_msgs nlohm
 add_executable(json_to_serial_node src/json_to_serial_node.cpp)
 ament_target_dependencies(json_to_serial_node rclcpp std_msgs nlohmann_json)
 
+add_executable(cmd_vel_smoother src/cmd_vel_smoother.cpp)
+ament_target_dependencies(cmd_vel_smoother rclcpp geometry_msgs)
+install(TARGETS cmd_vel_smoother DESTINATION lib/${PROJECT_NAME})
+
+
 install(TARGETS
   joystick_driver_node
   json_to_serial_node

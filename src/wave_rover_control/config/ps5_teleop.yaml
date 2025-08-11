@@ -1,0 +1,11 @@
+teleop_twist_joy:
+  ros__parameters:
+    enable_button: 4          # L1 to enable motion
+    enable_turbo_button: 5    # R1 for turbo mode
+    axis_linear.x: 1          # Left stick vertical
+    axis_angular.z: 0         # Left stick horizontal
+    deadzone: 0.1              # Prevent drift
+    scale_linear.x: 0.5        # Max speed in normal mode
+    scale_angular.z: 0.5
+    scale_linear_turbo.x: 0.8  # Max speed in turbo mode
+    scale_angular_turbo.z: 0.8
