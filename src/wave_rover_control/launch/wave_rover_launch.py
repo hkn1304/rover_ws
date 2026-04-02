@@ -1,16 +1,20 @@
+import os
+
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch_ros.actions import Node
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
 
 def generate_launch_description():
+    bringup_launch = os.path.join(
+        get_package_share_directory('wave_rover_control'),
+        'launch',
+        'bringup.launch.py'
+    )
+
     return LaunchDescription([
-        Node(
-            package='wave_rover_control',
-            executable='joystick_driver_node',
-            name='joystick_driver_node'
-        ),
-        Node(
-            package='wave_rover_control',
-            executable='json_to_serial_node',
-            name='json_to_serial_node'
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(bringup_launch)
         )
     ])

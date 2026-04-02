@@ -1,0 +1,3 @@
+This vendored serial package is incomplete in this workspace snapshot and is
+intentionally excluded from colcon discovery. The active Wave Rover stack uses
+wave_rover_control/src/json_to_serial_node.cpp for serial I/O.

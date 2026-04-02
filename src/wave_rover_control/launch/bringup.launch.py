@@ -1,15 +1,13 @@
 from launch import LaunchDescription
-from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
+from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+from launch.substitutions import LaunchConfiguration
 import os
 
 def generate_launch_description():
     pkg_name = 'wave_rover_control'
-    share_dir = os.path.join(
-        os.getenv('COLCON_PREFIX_PATH').split(':')[0],
-        'share', pkg_name
-    )
+    share_dir = get_package_share_directory(pkg_name)
 
     default_params = os.path.join(share_dir, 'config', 'params.yaml')
     ps5_config = os.path.join(share_dir, 'config', 'ps5_teleop.yaml')
@@ -35,6 +33,7 @@ def generate_launch_description():
             package='teleop_twist_joy',
             executable='teleop_node',
             name='teleop_twist_joy',
+            output='screen',
             parameters=[ps5_config],
             remappings=[('/cmd_vel', '/cmd_vel_raw')]
         ),
@@ -49,8 +48,9 @@ def generate_launch_description():
                 'decel_limit': 0.5,
                 'control_rate': 20.0
             }],
-            remappings=[('cmd_vel_raw', 'cmd_vel_raw'),
-                        ('cmd_vel', 'cmd_vel')]
+            remappings=[('cmd_vel_raw', '/cmd_vel_raw'),
+                        ('cmd_vel', '/cmd_vel')],
+            output='screen'
         ),
 
         # WaveRover serial bridge
