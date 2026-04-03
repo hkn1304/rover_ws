@@ -10,32 +10,11 @@ def generate_launch_description():
     share_dir = get_package_share_directory(pkg_name)
 
     default_params = os.path.join(share_dir, 'config', 'params.yaml')
-    ps5_config = os.path.join(share_dir, 'config', 'ps5_teleop.yaml')
-
     return LaunchDescription([
         DeclareLaunchArgument(
             'params_file',
             default_value=default_params,
             description='Path to ROS2 params YAML for json_to_serial_node'
-        ),
-
-        # Joystick driver
-        Node(
-            package='joy',
-            executable='joy_node',
-            name='joy_node',
-            output='screen',
-            parameters=[{'dev': '/dev/input/js0'}]
-        ),
-
-        # Teleop with PS5 config
-        Node(
-            package='teleop_twist_joy',
-            executable='teleop_node',
-            name='teleop_twist_joy',
-            output='screen',
-            parameters=[ps5_config],
-            remappings=[('/cmd_vel', '/cmd_vel_raw')]
         ),
 
         # Velocity smoother

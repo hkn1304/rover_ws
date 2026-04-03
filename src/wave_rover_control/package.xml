@@ -2,7 +2,7 @@
 <package format="3">
   <name>wave_rover_control</name>
   <version>0.0.1</version>
-  <description>Joystick to WAVE ROVER control with serial output</description>
+  <description>Core Wave Rover control nodes for velocity smoothing and serial bridging</description>
   <maintainer email="you@example.com">Your Name</maintainer>
   <license>MIT</license>
 
@@ -11,10 +11,7 @@
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
-  <depend>nlohmann_json</depend>
 
-  <exec_depend>joy</exec_depend>
-  <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>ament_index_python</exec_depend>

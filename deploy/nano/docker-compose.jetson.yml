@@ -1,0 +1,40 @@
+services:
+  robot:
+    image: dustynv/ros:humble-desktop-l4t-r32.7.1
+    container_name: wave_rover_robot
+    network_mode: host
+    restart: unless-stopped
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    volumes:
+      - /home/hkn/Desktop/rover_ws_chatgpt:/root/ros2_ws
+    command: >
+      bash -lc "
+      source /opt/ros/humble/install/setup.bash &&
+      export AMENT_PREFIX_PATH=/root/ros2_ws/install/wave_rover_control:$AMENT_PREFIX_PATH &&
+      export CMAKE_PREFIX_PATH=/root/ros2_ws/install/wave_rover_control:$CMAKE_PREFIX_PATH &&
+      ros2 run wave_rover_control json_to_serial_node
+      --ros-args --params-file /root/ros2_ws/src/wave_rover_control/config/params.yaml
+      "
+
+  radar:
+    image: dustynv/ros:humble-desktop-l4t-r32.7.1
+    container_name: wave_rover_radar
+    network_mode: host
+    restart: unless-stopped
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyACM1:/dev/ttyACM1
+    environment:
+      DISPLAY: ${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /home/hkn/Desktop/MMWAVE_ROS2:/root/mmwave_ws
+    command: >
+      bash -lc "
+      source /opt/ros/humble/install/setup.bash &&
+      if [ -f /root/mmwave_ws/mmwave_ti_ros/install/setup.bash ]; then
+        source /root/mmwave_ws/mmwave_ti_ros/install/setup.bash;
+      fi &&
+      ros2 launch ti_mmwave_ros2_pkg eloquent_composition.launch.py
+      "

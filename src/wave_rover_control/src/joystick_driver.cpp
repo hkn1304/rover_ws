@@ -1,5 +1,7 @@
 #include "wave_rover_control/joystick_driver.hpp"
 
+#include <cstdio>
+
 using std::placeholders::_1;
 
 namespace joystick_to_json_pkg
@@ -20,13 +22,10 @@ void JoystickDriver::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg)
   double left = msg->axes[1];  // Forward/backward on left stick
   double right = msg->axes[4]; // Forward/backward on right stick
 
-  nlohmann::json cmd;
-  cmd["T"] = 1;
-  cmd["L"] = left;
-  cmd["R"] = right;
-
   std_msgs::msg::String json_msg;
-  json_msg.data = cmd.dump();
+  char buffer[128];
+  std::snprintf(buffer, sizeof(buffer), "{\"T\":1,\"L\":%.3f,\"R\":%.3f}", left, right);
+  json_msg.data = buffer;
   json_pub_->publish(json_msg);
 }
 

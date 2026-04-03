@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>wave_rover_logitech_f710_teleop</name>
+  <version>0.0.1</version>
+  <description>Optional Logitech F710 teleop package for Wave Rover manual driving</description>
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>joy</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>wave_rover_control</exec_depend>
+</package>

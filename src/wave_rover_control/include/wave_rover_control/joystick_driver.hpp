@@ -4,7 +4,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joy.hpp>
 #include <std_msgs/msg/string.hpp>
-#include <nlohmann/json.hpp>
 
 namespace joystick_to_json_pkg
 {

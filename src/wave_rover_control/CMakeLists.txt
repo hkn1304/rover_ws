@@ -10,15 +10,14 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(nlohmann_json REQUIRED)
 
 include_directories(include)
 
 add_executable(joystick_driver_node src/main.cpp src/joystick_driver.cpp)
-ament_target_dependencies(joystick_driver_node rclcpp sensor_msgs std_msgs nlohmann_json)
+ament_target_dependencies(joystick_driver_node rclcpp sensor_msgs std_msgs)
 
 add_executable(json_to_serial_node src/json_to_serial_node.cpp)
-ament_target_dependencies(json_to_serial_node rclcpp geometry_msgs std_msgs nlohmann_json)
+ament_target_dependencies(json_to_serial_node rclcpp geometry_msgs std_msgs)
 
 add_executable(cmd_vel_smoother src/cmd_vel_smoother.cpp)
 ament_target_dependencies(cmd_vel_smoother rclcpp geometry_msgs)
